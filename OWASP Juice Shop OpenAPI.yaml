@@ -1,0 +1,948 @@
+
+openapi: 3.0.2
+info:
+  title: OWASP Juice Shop
+  description: OWASP Juice OpenAPi file for API Business Logic
+  version: "1.0"
+  contact:
+    name: Hernan Alvarez
+    url: https://github.com/halvarezo/JuiceShop-OpenAPI/tree/main
+    email: hernan.enrique@gmail.com
+servers:
+  - url: https://juicebl.radwarelatam.com
+security:
+  - BearerAuth: []
+
+paths:
+  /rest/user/whoami:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      security: []
+  /rest/user/security-question:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      security: []
+  /rest/saveLoginIp:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /profile:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Recycles:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/BasketItems:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                BasketId:
+                  type: string
+                ProductId:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+              example:
+                ProductId: 6
+                BasketId: '7'
+                quantity: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/BasketItems/{BasketId}:
+    get:
+     summary: basket items read
+     description: Part of the basket items endpoints
+     parameters:
+       - name: BasketId
+         in: path
+         schema:
+           type: integer
+           minimum: 1
+           maximum: 100
+         required: true
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}
+    put:
+     summary: basket items update
+     description: Part of the basket items endpoints
+     parameters:
+       - name: BasketId
+         in: path
+         schema:
+           type: integer
+           minimum: 1
+           maximum: 100
+         required: true
+     requestBody:
+        content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               quantity:
+                type: integer
+                minimum: 1
+                maximum: 100
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}
+    delete:
+     summary: basket items update
+     description: Part of the basket items endpoints
+     parameters:
+       - name: BasketId
+         in: path
+         schema:
+           type: integer
+           minimum: 1
+           maximum: 100
+         required: true
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}
+  /rest/products/search:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: q
+          in: query
+          allowEmptyValue: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+              examples: {}
+  /api/Addresss/{param}:
+    delete:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                country: fr
+                fullName: fr2222
+                mobileNum: 12121212
+                zipCode: '11'
+                streetAddress: '111111111111111'
+                city: '22121'
+                state: null
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/basket/{param}:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/languages:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/wallet/balance:
+    put:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                balance: 500
+                paymentId: 7
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/SecurityQuestions:
+    get:
+      tags:
+        - default
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Products/{param}:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: d
+          in: query
+          schema:
+            type: string
+          example: Mon Aug 26 2024
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/products/{param}/reviews:
+    put:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                message: dsdsadsa
+                author: xxxxx@yyyyy.zz
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/memories:
+    get:
+      tags:
+        - default
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/BasketItems/{param}:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Feedbacks:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                captchaId: 0
+                captcha: '36'
+                comment: hello (anonymous)
+                rating: 3
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Challenges:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: Score Board
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Quantitys:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/user/login:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: hernan.alvarez@radware.com
+                password:
+                  type: string
+                  format: password
+                  example: S3Cjuice
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/admin/application-configuration:
+    get:
+      tags:
+        - default
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Cards/{param}:
+    delete:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/SecurityAnswers:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                UserId:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  example: 25
+                answer: 
+                  type: string
+                  format: date
+                  example: 23/10/2024
+                SecurityQuestionId: 
+                  type: integer
+                  example: 4
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Deliverys:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Addresss:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                country: fr
+                fullName: fr
+                mobileNum: 12121212
+                zipCode: '11'
+                streetAddress: '111111111111111'
+                city: '22121'
+                state: null
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Users:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: xxxx@yyyy.zz
+                password: xxxxxxxxxx
+                passwordRepeat: xxxxxxxxxx
+                securityQuestion:
+                  id: 4
+                  question: Father's birth date? (MM/DD/YY)
+                  createdAt: '2024-08-22T09:24:47.395Z'
+                  updatedAt: '2024-08-22T09:24:47.395Z'
+                securityAnswer: 17/01/1944
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/order-history:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Cards:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                fullName: jeremie
+                cardNum: 1111111111111111
+                expMonth: '5'
+                expYear: '2085'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/user/reset-password:
+    post:
+      tags:
+        - default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: hernan.alvarez@radware.com
+                answer:
+                  type: string
+                  example: answer
+                new:
+                  type: string
+                  example: new
+                repeat:
+                  type: string
+                  example: repeat
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/admin/application-version:
+    get:
+      tags:
+        - default
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest/captcha:
+    get:
+      tags:
+        - default
+      security: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/Deliverys/{param}:
+    get:
+      tags:
+        - default
+      parameters:
+        - name: param
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /rest:
+    get:
+      description: Return API status
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              examples: {}
+  /rest/2fa:
+    get:
+      description: Return Products
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+              examples: {}
+  /b2b/v2/orders:
+    post:
+      summary: create an order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cid:
+                  type: string
+                orderLinesData:
+                  type: string
+                  pattern: ^\\w+$
+                orderLines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: integer
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 10
+      security: []
+      responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}   
+  /rest/deluxe-membership:
+    get:
+     summary: Delux Membership
+     description: Delux Membership Information Options   
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}     
+    post:
+     summary: Delux Membership
+     description: Delux Membership Information Options
+     requestBody:
+        content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               paymentMode:
+                type: string
+                pattern: ^[\w]*$
+                minLength: 3
+                maxLength: 10
+                description: Select Payment Mode
+               paymentId:
+                type: integer
+                minimum: 1
+                maximum: 100
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}     
+  /api/Feedbacks/:
+    get:
+     summary: Feedback EP
+     description: GET for adding feedback
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}     
+    post:
+     summary: Feedback EP
+     description: post for adding feedback
+     requestBody:
+        content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               UserId:
+                 type: integer
+                 minimum: 1
+                 maximum: 100
+               captchaId:
+                 type: integer
+                 minimum: 0
+                 maximum: 100
+               captcha:
+                type: string
+                pattern: ^[-]+[\w]*$|^[\w]*$
+                minLength: 1
+                maxLength: 4
+               rating:
+                type: integer
+                enum:
+                 - 1
+                 - 2
+                 - 3
+                 - 4
+                 - 5
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}     
+  /rest/chatbot/respond/:
+    post:
+     summary: Chat Bot Queries
+     description: Create a new query for the chatbot
+     requestBody:
+        content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               query:
+                type: string
+                pattern: ^[\w ]+
+                minLength: 3
+                maxLength: 1000
+                description: comment field
+               action:
+                type: string
+                enum:
+                 - query
+                 - setname
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}          
+  /rest/products/reviews:
+    post:
+     summary: Like a review
+     description: The id in this case is a combination between product ID and user.
+     requestBody:
+        content:
+         application/json:
+           schema:
+             type: object
+             properties:
+               id:
+                type: string
+                pattern: ^[\w]+
+                minLength: 1
+                maxLength: 20
+                description: id string
+     security: []
+     responses:
+       '200':
+         description: Auto generated using Swagger Inspector
+         content:
+           application/json:
+             schema:
+               type: string
+             examples: {}   
+             
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+        
